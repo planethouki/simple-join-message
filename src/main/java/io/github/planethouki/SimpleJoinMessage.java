@@ -1,4 +1,6 @@
 package io.github.planethouki;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -28,5 +30,23 @@ public final class SimpleJoinMessage extends JavaPlugin implements Listener {
         String message = getConfig().getString("welcome-message", "Welcome to the server!");
 
         event.setJoinMessage(message);
+    }
+
+    @Override
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        // コマンドが "sjm" の場合
+        if (command.getName().equalsIgnoreCase("sjm")) {
+            // サブコマンドが "reload" の場合
+            if (args.length > 0 && args[0].equalsIgnoreCase("reload")) {
+                // config.yml を再読み込み
+                reloadConfig();
+                sender.sendMessage("Config reloaded!");
+                return true;
+            } else {
+                sender.sendMessage("Usage: /sjm reload");
+                return false;
+            }
+        }
+        return false;
     }
 }
