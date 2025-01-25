@@ -27,8 +27,8 @@ jobs:
         with:
           arguments: shadowJar
 
-      - name: Archive build artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: plugin-jar
-          path: build/libs/*.jar
+#      - name: Archive build artifacts
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: plugin-jar
+#          path: build/libs/*.jar
