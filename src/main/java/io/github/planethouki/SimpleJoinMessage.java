@@ -15,6 +15,8 @@ import org.json.JSONObject;
 import okhttp3.*;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.UUID;
 
 public final class SimpleJoinMessage extends JavaPlugin implements Listener {
 
@@ -23,6 +25,9 @@ public final class SimpleJoinMessage extends JavaPlugin implements Listener {
     private String systemPrompt;
     private String userPrompt;
     private int maxTokens;
+
+    private final HashMap<UUID, Long> lastGreetTimes = new HashMap<>();
+    private final long cooldownTime = 5 * 60 * 1000;
 
     @Override
     public void onEnable() {
@@ -45,6 +50,14 @@ public final class SimpleJoinMessage extends JavaPlugin implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
+        UUID playerId = player.getUniqueId();
+
+        long currentTime = System.currentTimeMillis();
+        if (lastGreetTimes.containsKey(playerId) && (currentTime - lastGreetTimes.get(playerId) < cooldownTime)) {
+            return;
+        }
+
+        lastGreetTimes.put(playerId, currentTime);
 
         if (openAiApiKey == null || openAiApiKey.isEmpty() ) {
             player.sendMessage(ChatColor.AQUA + "[Server] " + ChatColor.RESET + defaultMessage);
