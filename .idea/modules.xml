@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/simple-join-message.main.iml" filepath="$PROJECT_DIR$/.idea/modules/simple-join-message.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SimpleJoinMessage.main.iml" filepath="$PROJECT_DIR$/.idea/modules/SimpleJoinMessage.main.iml" />
     </modules>
   </component>
 </project>
