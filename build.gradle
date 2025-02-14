@@ -20,8 +20,6 @@ repositories {
 
 dependencies {
     compileOnly("org.spigotmc:spigot-api:1.21-R0.1-SNAPSHOT")
-    implementation("com.squareup.okhttp3:okhttp:4.12.0")
-    implementation('org.json:json:20250107')
 }
 
 def targetJavaVersion = 21
